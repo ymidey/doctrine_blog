@@ -25,7 +25,7 @@ session_start(); ?>
             <a href="archive.php">Archives</a>
             <?php
             if (isset($_SESSION["admin"]) && ($_SESSION["admin"] == "1")) {
-                echo "<a href='panneladmin.php'>Pannel Admin</a>";
+                echo "<a href='paneladmin.php'>Panel Admin</a>";
             }
             if (!isset($_SESSION["id_user"])) {
                 echo "<a href='login.php'>Se connecter</a>";

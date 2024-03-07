@@ -119,9 +119,9 @@ h4, h3, h2, h1 {
     font-size: 1.125rem;
 }
 
-/* #commentaire {
+#commentaire {
     display: none;
-} */
+}
 
 .billet-header h2 {
     font-size: 1.5rem;
@@ -329,7 +329,6 @@ form button:hover {
 
 .form-com {
     margin: 0;
-    width: 40%;
 }
 
 @media screen and (max-width: 1020px) {

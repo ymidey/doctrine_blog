@@ -5,6 +5,7 @@ include("header.php");
 if (isset($_GET['id_billet']) && isset($_SESSION['id_user'])) {
 
     $id_billet = ($_GET['id_billet']);
+    $id_user = ($_SESSION['id_user']);
 
     if (isset($_GET["requete"]) == "insert" && isset($_GET['com'])) {
         $commentaire = ($_GET['com']);
@@ -15,6 +16,7 @@ if (isset($_GET['id_billet']) && isset($_SESSION['id_user'])) {
         $comment->setContenu($commentaire);
         $comment->setDatePublication($datePubli);
         $comment->setBillets($entityManager->find('Billets', $id_billet));
+        $comment->setUtilisateur($entityManager->find('Utilisateur', $id_user));
         $entityManager->persist($comment);
         $entityManager->flush();
         header("Location: billet.php?id_billet=" . $id_billet);

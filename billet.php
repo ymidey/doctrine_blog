@@ -5,7 +5,6 @@ $idBillet = $_GET["id_billet"];
 
 $billet = $entityManager->getRepository('Billets')->find($idBillet);
 $comment = $entityManager->getRepository('Commentaires')->findBy(array('billets' => $idBillet));
-// $comment = $entityManager->getRepository('Commentaires')->findBy(array('id' => $idBillet));
 
 ?>
 
@@ -56,13 +55,12 @@ $comment = $entityManager->getRepository('Commentaires')->findBy(array('billets'
                 echo "Publié par " . $row->getBillets()->getUtilisateur()->getPseudo() . " le " . $formattedDateTime;
                 echo "</p>";
 
-
                 if (isset($_SESSION["id_user"]) && ($_SESSION["id_user"] == $row->getBillets()->getUtilisateur()->getId())) {
                     echo "<div id='commentContent{$row->getId()}'>";
                     echo "<p>" . $row->getContenu() . "</p>";
                     echo "</div>";
 
-                    echo "<form id='commentForm{$row->getId()}' action='traite-com.php' method='get' style='display:none;'>";
+                    echo "<form id='commentForm{$row->getId()}' action='traitecom.php' method='get' style='display:none;'>";
                     echo "<textarea name='nouveau_contenu' required>" . $row->getContenu() . "</textarea>";
                     echo "<input type='hidden' name='id_commentaire' value='" . $row->getId() . "'>";
                     echo "<input type='hidden' name='requete' value='update'>";
@@ -97,7 +95,7 @@ $comment = $entityManager->getRepository('Commentaires')->findBy(array('billets'
                 }
 
                 if (isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
-                    echo "<a href='traite-com.php?id_billet=" . $idBillet . "&requete=delete&idcom=" . $row->getId() . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');\">Supprimer le commentaire</a>";
+                    echo "<a href='traitecom.php?id_billet=" . $idBillet . "&requete=delete&idcom=" . $row->getId() . "' onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');\">Supprimer le commentaire</a>";
                 }
 
                 echo "</div>";
@@ -107,8 +105,6 @@ $comment = $entityManager->getRepository('Commentaires')->findBy(array('billets'
         }
 
         ?>
-
-
 
         <?php if (isset($_SESSION["id_user"])) { ?>
             <form action="traitecom.php" method="get" class="requete form-com">
@@ -122,7 +118,6 @@ $comment = $entityManager->getRepository('Commentaires')->findBy(array('billets'
             echo "<br><div><p>Pour pouvoir ajouter un commentaire, vous devez être connecter</p><a href='login.php'>Me connecter</a></div>";
         } ?>
     </div>
-    <p>Aucun résultat trouvé.</p>
 </div>
 
 <?php include("footer.php"); ?>

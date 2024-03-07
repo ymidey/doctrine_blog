@@ -14,6 +14,11 @@ class Commentaires
      * @JoinColumn(nullable=false)
      */
     public $billets;
+    /**
+     * @ManyToOne(targetEntity="Utilisateur")
+     * @JoinColumn(nullable=false)
+     */
+    public $utilisateur;
 
     /**
      * Get id.
@@ -95,5 +100,29 @@ class Commentaires
     public function getBillets()
     {
         return $this->billets;
+    }
+
+    /**
+     * Set utilisateur.
+     *
+     * @param \Utilisateur $utilisateur
+     *
+     * @return Commentaires
+     */
+    public function setUtilisateur(\Utilisateur $utilisateur)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur.
+     *
+     * @return \Utilisateur
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }
